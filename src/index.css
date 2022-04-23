@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.register{
+  background-image: url("https://picsum.photos/800/800") ;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 5rem;
+
+ 
+}
