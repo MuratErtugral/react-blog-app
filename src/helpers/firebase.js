@@ -18,31 +18,31 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDNj_WPSKtUYgIzwyda0q_KOmlSnbvfRh4",
-  authDomain: "milestone-4d714.firebaseapp.com",
-  projectId: "milestone-4d714",
-  storageBucket: "milestone-4d714.appspot.com",
-  messagingSenderId: "453492907884",
-  appId: "1:453492907884:web:922d4166be9e8f901b9d49"
+    apiKey: process.env.REACT_APP_apiKey,
+    authDomain: process.env.REACT_APP_authDomain,
+    databaseURL: process.env.REACT_APP_databaseURL,
+    projectId: process.env.REACT_APP_projectId,
+    storageBucket: process.env.REACT_APP_storageBucket,
+    messagingSenderId: process.env.REACT_APP_messagingSenderId,
+    appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+ const app = initializeApp(firebaseConfig);
+
 
 const auth = getAuth(app);
 
-export const createUser = async (email, password, navigate ) => {
+export const createUser = async (email, password, navigate, displayName) => {
     try {
-      //? yeni bir kullanıcı oluşturmak için kullanılan firebase metodu
       let userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-    //   //? kullanıcı profilini güncellemek için kullanılan firebase metodu
-    //   await updateProfile(auth.currentUser, {
-    //     displayName: displayName,
-    //   });
+      await updateProfile(auth.currentUser, {
+        displayName: displayName,
+      });
       navigate("/login");
     //   toastSuccessNotify("Registered successfully!");
       console.log(userCredential);
@@ -73,3 +73,32 @@ export const createUser = async (email, password, navigate ) => {
     signOut(auth);
     // toastSuccessNotify("Logged out successfully!");
   };
+
+  export const userObserver = (setCurrentUser) => {
+    //? Kullanıcının signin olup olmadığını takip eden ve kullanıcı değiştiğinde yeni kullanıcıyı response olarak dönen firebase metodu
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setCurrentUser(currentUser);
+      } else {
+        // User is signed out
+        setCurrentUser(false);
+      }
+    });
+  };
+
+  export const signUpProvider = (navigate) => {
+    //? Google ile giriş yapılması için kullanılan firebase metodu
+    const provider = new GoogleAuthProvider();
+    //? Açılır pencere ile giriş yapılması için kullanılan firebase metodu
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log(result);
+        navigate("/");
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        console.log(error);
+      });
+  };
+
+  export default app

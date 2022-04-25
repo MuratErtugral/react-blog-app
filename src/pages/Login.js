@@ -13,7 +13,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Block from "../assets/blok.png";
 import Google from "../assets/google.png"
 import { useNavigate } from 'react-router-dom';
-import { signIn } from '../helpers/firebase';
+import { signIn, signUpProvider } from '../helpers/firebase';
 
 function Copyright(props) {
   return (
@@ -101,16 +101,17 @@ export default function Login() {
             >
               Login
             </Button>
-            <Button
+ 
+          </Box>
+          <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 2, mb: 2 , backgroundColor:"white", color:"black", fontSize:"1rem", }}
+              onClick= {()=>signUpProvider(navigate)}
             >
               With  <span> <img src= {Google} alt="logo" width= "150px" height="50px"/> </span>  
             </Button>
-            
-          </Box>
         </Box>
         <Copyright sx={{ mt: 2 }} />
       </Container>

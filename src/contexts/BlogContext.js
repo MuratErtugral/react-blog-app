@@ -1,9 +1,16 @@
-import React from 'react'
+// import firebase from "../helpers/firebase"
+// import { getDatabase , ref ,push,set } from "firebase/database";
 
-const BlogContext = () => {
-  return (
-    <div>BlogContext</div>
-  )
-}
+// const AddBlog = (blog)=>{
+//   const db = getDatabase();
+//   const userRef=ref(db,"blogs");
+//   const newUserRef=push(userRef)
+//   set((newUserRef),{
+//       title:blog.title,
+//       img:blog.img,
+//       comment:blog.comment,
+      
+//   })
+// }
 
-export default BlogContext
+// export default AddBlog
