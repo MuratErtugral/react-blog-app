@@ -11,7 +11,8 @@ let time = d.toLocaleDateString();
 
 
 const BlogContextProvider = ({children}) => {
-    
+  
+  const [blogList, setBlogList] = useState();
   const { currentUser } = useContext(AuthContext);
   
   const AddNewBlog=(blog)=>{
@@ -28,11 +29,11 @@ const BlogContextProvider = ({children}) => {
       })
   
   }
-
+  
   const BlogFetch = () => {
     const [isLoading, setIsLoading] = useState();
-    const [blogList, setBlogList] = useState();
-    const [row,setRow] = useState();
+    
+    
 
     useEffect(() => {
         setIsLoading(true)
@@ -41,9 +42,7 @@ const BlogContextProvider = ({children}) => {
 
         onValue(blogRef, (snapshot) => {
             const data = snapshot.val();
-            setRow(data)
             const blogsArray = []
-            console.log(data["-N0_EmM2ypTz2OQMVzIx"])
             for (let id in data) {
                 blogsArray.push({ id, ...data[id] })
             }
@@ -52,8 +51,8 @@ const BlogContextProvider = ({children}) => {
             setIsLoading(false)
         })
     }, [])
-    console.log(row)
-    return { isLoading, blogList,row }
+    
+    return { isLoading, blogList }
     
 
 }
@@ -61,7 +60,7 @@ const BlogContextProvider = ({children}) => {
 
 
   return(
-    <BlogContext.Provider value={{AddNewBlog, BlogFetch}} >
+    <BlogContext.Provider value={{AddNewBlog, BlogFetch , blogList}} >
       {children}
     </BlogContext.Provider>
   )

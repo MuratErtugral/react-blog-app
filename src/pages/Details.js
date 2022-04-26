@@ -6,9 +6,11 @@ const Details = () => {
   const params = useParams();
   const id = (params.blogId)
   console.log(typeof(id))
-  const { BlogFetch } = useContext(BlogContext)
-  const { row } = BlogFetch();
-  // console.log(row["-N0_EmM2ypTz2OQMVzIx"])
+  const { blogList } = useContext(BlogContext)
+  const blog = blogList.filter((item)=>item.id==id)
+  console.log(blog)
+  
+  
   return (
     <div>Details</div>
   )
