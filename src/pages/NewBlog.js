@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
-import AddBlog from "../contexts/BlogContext"
+import React, { useContext, useState } from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -11,7 +9,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Block from "../assets/blok.png";
 import { useNavigate } from 'react-router-dom';
-const initialValues={title:"", image:"",content:""}
+import { BlogContext } from "../contexts/BlogContext"
+
+
+const initialValues={title:"", image:"",content:""};
+
+
 
 
 
@@ -20,21 +23,23 @@ const theme = createTheme();
 
 
 export default function NewBlog() {
-
+  
+  const { AddNewBlog } = useContext(BlogContext);
   const [blog, setBlog] = useState(initialValues)
   
   const handleChange = (e) => {
     e.preventDefault();
     const { name,value } = e.target
-    console.log(name,value);
+    
     setBlog({...blog, [name]:value})
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(blog);
+    AddNewBlog(blog)
     setBlog(initialValues)
-    AddBlog(blog)
+    
   };
   
 

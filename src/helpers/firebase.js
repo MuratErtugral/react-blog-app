@@ -1,5 +1,5 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import  "firebase/database"
 
 import {
     createUserWithEmailAndPassword,
@@ -28,10 +28,10 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
- const app = initializeApp(firebaseConfig);
+ const firebase = initializeApp(firebaseConfig);
 
-
-const auth = getAuth(app);
+// export const firebaseDB = app.database();
+const auth = getAuth(firebase);
 
 export const createUser = async (email, password, navigate, displayName) => {
     try {
@@ -101,4 +101,4 @@ export const createUser = async (email, password, navigate, displayName) => {
       });
   };
 
-  export default app
+  export default firebase
