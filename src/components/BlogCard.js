@@ -11,7 +11,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import NoData from "../assets/no-data.png"
+
 
 export default function BlogCard({item}) {
   const { currentUser } = useContext(AuthContext);

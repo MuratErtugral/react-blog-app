@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import BlogCard from '../components/BlogCard'
 import { BlogContext } from '../contexts/BlogContext'
+import loadgif from "../assets/loading.gif"
 
 
 const Dashboard = () => {
@@ -19,13 +20,15 @@ console.log(blogList)
           justifyContent: "center",
         }}
       >
-        {
-          blogList?.map((item, index) => (
-            
+        {isLoading ? <img src={loadgif} alt="" /> : <>
+        
+        {blogList?.map((item, index) => ( 
             <BlogCard item={item} key={index} />
-          ))
-        }
-
+            ))
+          }</>
+  
+      }
+        
       </div>
 
 
