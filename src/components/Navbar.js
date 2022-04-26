@@ -21,7 +21,7 @@ import { AuthContext } from '../contexts/AuthContext';
 const Navbar = () => {
   const navigate = useNavigate();
   const {currentUser}= useContext(AuthContext)
-  console.log(currentUser);
+  
   // const currentUser = true
   
   const [anchorElNav, setAnchorElNav] = React.useState(null);

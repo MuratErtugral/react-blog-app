@@ -5,6 +5,8 @@ import { AuthContext } from './AuthContext';
 
 export const BlogContext = createContext();
 
+const d = new Date();
+let time = d.toLocaleDateString();
 
 
 
@@ -21,7 +23,8 @@ const BlogContextProvider = ({children}) => {
           title:blog.title,
           image:blog.image,
           content:blog.content,
-          author: currentUser.email
+          author: currentUser.email,
+          date:time
       })
   
   }
@@ -29,6 +32,7 @@ const BlogContextProvider = ({children}) => {
   const BlogFetch = () => {
     const [isLoading, setIsLoading] = useState();
     const [blogList, setBlogList] = useState();
+    const [row,setRow] = useState();
 
     useEffect(() => {
         setIsLoading(true)
@@ -37,19 +41,22 @@ const BlogContextProvider = ({children}) => {
 
         onValue(blogRef, (snapshot) => {
             const data = snapshot.val();
+            setRow(data)
             const blogsArray = []
-
+            console.log(data["-N0_EmM2ypTz2OQMVzIx"])
             for (let id in data) {
                 blogsArray.push({ id, ...data[id] })
             }
+            console.log(typeof(row))
             setBlogList(blogsArray)
             setIsLoading(false)
         })
     }, [])
-    return { isLoading, blogList }
+    console.log(row)
+    return { isLoading, blogList,row }
+    
 
 }
-
 
 
 

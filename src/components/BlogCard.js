@@ -11,9 +11,11 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 export default function BlogCard({item}) {
+  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
   const [likeNumber, setLikeNumber] = useState(0);
@@ -33,7 +35,7 @@ export default function BlogCard({item}) {
   };
 
   return (
-    <Card sx={{ width: 300, height: 500 }}>
+    <Card sx={{ width: 300, height: 500 }}  >
       <CardMedia
         component="img"
         height="100"
@@ -42,6 +44,7 @@ export default function BlogCard({item}) {
 
         alt="Paella dish"
         objectfit="cover"
+        onClick={()=>navigate(`details/${item.id}`)}
       />
       <CardContent>
         <Typography
@@ -53,6 +56,7 @@ export default function BlogCard({item}) {
             padding: "0.5rem",
             fontFamily: "Girassol",
           }}
+          onClick={()=>navigate(`details/${item.id}`)}
         >
           <div
             style={{
@@ -62,7 +66,7 @@ export default function BlogCard({item}) {
             }}
           >
             <h3>{item.title}</h3>
-            <h6 style={{ color: "grey" }}>Date Here</h6>
+            <h6 style={{ color: "grey" }}>{item?.date}</h6>
           </div>
           {item.content}
         </Typography>

@@ -7,7 +7,7 @@ import loadgif from "../assets/loading.gif"
 const Dashboard = () => {
 const { BlogFetch } = useContext(BlogContext)
 const { isLoading, blogList } = BlogFetch();
-console.log(blogList)
+
   return (
     <div>
       <h1 className="dash-text" style={{ textAlign: "center" }}>──── Dashboard ────</h1>
