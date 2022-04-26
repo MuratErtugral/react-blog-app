@@ -13,7 +13,7 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import NoData from "../assets/no-data.png"
 
-export default function BlogCard() {
+export default function BlogCard({item}) {
   const { currentUser } = useContext(AuthContext);
 
   const [likeNumber, setLikeNumber] = useState(0);
@@ -38,7 +38,7 @@ export default function BlogCard() {
         component="img"
         height="100"
         width="200"
-        image={NoData}
+        image={item.image}
 
         alt="Paella dish"
         objectfit="cover"
@@ -61,12 +61,10 @@ export default function BlogCard() {
               color: "#046582",
             }}
           >
-            <h3>Title Here</h3>
+            <h3>{item.title}</h3>
             <h6 style={{ color: "grey" }}>Date Here</h6>
           </div>
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {item.content}
         </Typography>
 
         <Typography
@@ -77,7 +75,7 @@ export default function BlogCard() {
           <IconButton sx={{ color: "black", p: 0 }}>
             <AccountCircleIcon fontSize="small" />
           </IconButton>
-          {currentUser?.email}
+          {item.author}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -99,3 +97,5 @@ export default function BlogCard() {
     </Card>
   );
 }
+
+
