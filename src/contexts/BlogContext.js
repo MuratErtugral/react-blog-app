@@ -26,11 +26,35 @@ const BlogContextProvider = ({children}) => {
   
   }
 
+  const BlogFetch = () => {
+    const [isLoading, setIsLoading] = useState();
+    const [blogList, setBlogList] = useState();
+
+    useEffect(() => {
+        setIsLoading(true)
+        const database = getDatabase();
+        const blogRef = ref(database, "blogs");
+
+        onValue(blogRef, (snapshot) => {
+            const data = snapshot.val();
+            const blogsArray = []
+
+            for (let id in data) {
+                blogsArray.push({ id, ...data[id] })
+            }
+            setBlogList(blogsArray)
+            setIsLoading(false)
+        })
+    }, [])
+    return { isLoading, blogList }
+
+}
+
 
 
 
   return(
-    <BlogContext.Provider value={{AddNewBlog}} >
+    <BlogContext.Provider value={{AddNewBlog, BlogFetch}} >
       {children}
     </BlogContext.Provider>
   )
