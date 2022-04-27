@@ -26,7 +26,7 @@ const { isLoading, blogList } = BlogFetch();
             <BlogCard item={item} key={index} />
             ))
           }</>
-  
+          
       }
         
       </div>

@@ -7,6 +7,7 @@ import Register from "../pages/Register"
 import Profil from "../pages/Profil"
 import NewBlog from "../pages/NewBlog"
 import Details from "../pages/Details"
+import PrivateRouter from './PrivateRouter'
 
 const AppRouter = () => {
 
@@ -18,10 +19,11 @@ const AppRouter = () => {
         <Route path="/" element={<Dasboard/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/register" element={<Register/>}/>
-        <Route path="/profil" element={<Profil/>}/>
-        <Route path="/newblog" element={<NewBlog/>}/>
-        <Route path="/details/:blogId" element={<Details/>}/>
-
+        <Route element={<PrivateRouter/>}>
+          <Route path="/profil" element={<Profil/>}/>
+          <Route path="/newblog" element={<NewBlog/>}/>
+          <Route path="/details/" element={<Details/>}/>
+        </Route>
       </Routes>
     </Router>
   )

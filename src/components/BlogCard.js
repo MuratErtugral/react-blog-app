@@ -33,9 +33,13 @@ export default function BlogCard({item}) {
       setClick(!click);
     }
   };
+  const handleNavigate = ()=>{
+    navigate("/details", { state: { item } });
+  }
 
   return (
     <Card sx={{ width: 300, height: 500 }}  >
+      <div onClick={handleNavigate}>
       <CardMedia
         component="img"
         height="100"
@@ -44,7 +48,7 @@ export default function BlogCard({item}) {
 
         alt="Paella dish"
         objectfit="cover"
-        onClick={()=>navigate(`details/${item.id}`)}
+        
       />
       <CardContent>
         <Typography
@@ -56,7 +60,7 @@ export default function BlogCard({item}) {
             padding: "0.5rem",
             fontFamily: "Girassol",
           }}
-          onClick={()=>navigate(`details/${item.id}`)}
+          
         >
           <div
             style={{
@@ -82,6 +86,7 @@ export default function BlogCard({item}) {
           {item.author}
         </Typography>
       </CardContent>
+      </div>
       <CardActions disableSpacing>
         <IconButton
           onClick={() => {

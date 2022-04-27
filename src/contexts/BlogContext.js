@@ -29,6 +29,13 @@ const BlogContextProvider = ({children}) => {
       })
   
   }
+  const DeleteBlog=(id)=>{
+    const dataBase = getDatabase();
+    const blogRef=ref(dataBase,"blogs");
+    remove(ref(dataBase,"blogs/"+id))
+
+    
+}
   
   const BlogFetch = () => {
     const [isLoading, setIsLoading] = useState();
@@ -60,7 +67,7 @@ const BlogContextProvider = ({children}) => {
 
 
   return(
-    <BlogContext.Provider value={{AddNewBlog, BlogFetch , blogList}} >
+    <BlogContext.Provider value={{AddNewBlog, BlogFetch , DeleteBlog }} >
       {children}
     </BlogContext.Provider>
   )
