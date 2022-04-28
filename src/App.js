@@ -1,4 +1,4 @@
-import * as React from 'react';
+import  React from 'react';
 import './App.css';
 import AppRouter from './app-router/AppRouter';
 import AuthContextProvider from './contexts/AuthContext';
@@ -13,7 +13,5 @@ function App() {
     </AuthContextProvider>
   )
 }
-
-
 
 export default App;
