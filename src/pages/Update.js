@@ -38,7 +38,8 @@ export default function Update() {
     event.preventDefault();
     
     EditBlog(blog)
-    navigate("/")
+    const item = blog
+    navigate("/details", { state: { item } });
     
   };
   
