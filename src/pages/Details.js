@@ -25,6 +25,11 @@ const Details = () => {
   const [likeColor, setLikeColor] = useState();
   const [click, setClick] = useState(true);
   const navigate = useNavigate();
+
+  const handleNavigate = ()=>{
+    navigate("/update", { state: { item } });
+  }
+
   const handleDelete = () => {
     DeleteBlog(item.id)
     navigate("/")
@@ -116,7 +121,7 @@ const Details = () => {
         
       </CardActions>
       {(currentUser?.email==item.author) ?  <div style={{ display:"flex", justifyContent:"space-evenly", marginTop:"1rem" }}>
-      <Button variant="contained" >Update</Button>
+      <Button variant="contained" onClick={handleNavigate}  >Update</Button>
       <Button variant="contained" onClick={handleDelete} color="error" >Delete</Button>
       </div> : <p></p> }
       
