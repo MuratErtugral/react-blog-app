@@ -9,13 +9,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Block from "../assets/blok.png";
 import { BlogContext } from "../contexts/BlogContext"
-import { useLocation } from 'react-router-dom';
-
-
-
-
-
-
+import { useLocation, useNavigate } from 'react-router-dom';
 
 
 
@@ -26,12 +20,11 @@ export default function Update() {
 
   const location = useLocation();
   const item = location.state.item;
-  
+  const navigate = useNavigate();
   const initialValues={...item};
-  const int = {...item}
-  console.log(int)
   
-  const { AddNewBlog } = useContext(BlogContext);
+  
+  const { EditBlog } = useContext(BlogContext);
   const [blog, setBlog] = useState(initialValues)
   
   const handleChange = (e) => {
@@ -43,9 +36,9 @@ export default function Update() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(blog);
-    AddNewBlog(blog)
-    setBlog(initialValues)
+    
+    EditBlog(blog)
+    navigate("/")
     
   };
   
@@ -54,7 +47,7 @@ export default function Update() {
     
     <div >
     <ThemeProvider theme={theme}>
-      <Container sx={{backgroundColor :"white",}} component="main" maxWidth="xs"  >
+      <Container sx={{backgroundColor :"white", mt:5}} component="main" maxWidth="xs"  >
         <CssBaseline />
         <Box
           sx={{
@@ -67,7 +60,7 @@ export default function Update() {
           }}
         >
           
-            <img src={Block} alt="block" style={{margin:"1rem",padding:"1rem",borderRadius: "50%" , backgroundColor:"gray"}} />
+            <img src={blog.image} alt="block" style={{marginBottom:"2rem"}} />
           
           <Typography component="h1" variant="h5">
           ──── UPDATE BLOG ────
@@ -124,7 +117,7 @@ export default function Update() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Submit
+              UPDATE
             </Button>
  
           </Box>

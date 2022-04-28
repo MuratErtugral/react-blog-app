@@ -36,6 +36,14 @@ const BlogContextProvider = ({children}) => {
 
     
 }
+
+const EditBlog = (item) => {
+  const db = getDatabase();
+  const updates = {};
+
+  updates["blogs/" + item.id] = item;
+  return update(ref(db), updates);
+};
   
   const BlogFetch = () => {
     const [isLoading, setIsLoading] = useState();
@@ -67,7 +75,7 @@ const BlogContextProvider = ({children}) => {
 
 
   return(
-    <BlogContext.Provider value={{AddNewBlog, BlogFetch , DeleteBlog }} >
+    <BlogContext.Provider value={{AddNewBlog, BlogFetch , DeleteBlog, EditBlog }} >
       {children}
     </BlogContext.Provider>
   )
