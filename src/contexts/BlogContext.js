@@ -36,7 +36,6 @@ const BlogContextProvider = ({ children }) => {
   };
   const DeleteBlog = (id) => {
     const dataBase = getDatabase();
-    const blogRef = ref(dataBase, "blogs");
     remove(ref(dataBase, "blogs/" + id));
     Toastify("Blog Deleted");
   };
@@ -60,11 +59,12 @@ const BlogContextProvider = ({ children }) => {
 
       onValue(blogRef, (snapshot) => {
         const data = snapshot.val();
+        console.log(data);
         const blogsArray = [];
         for (let id in data) {
           blogsArray.push({ id, ...data[id] });
         }
-        console.log(typeof row);
+        
         setBlogList(blogsArray);
         setIsLoading(false);
       });

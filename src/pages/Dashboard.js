@@ -10,6 +10,7 @@ const { BlogFetch } = useContext(BlogContext)
 const { isLoading, blogList } = BlogFetch();
 
 
+
   return (
     <div>
       <h1 className="dash-text" style={{ textAlign: "center" }}>──── Dashboard ────</h1>
@@ -18,7 +19,7 @@ const { isLoading, blogList } = BlogFetch();
           display: "flex",
           flexWrap: "wrap",
           gap: "1rem",
-          // margin: "3rem",
+          
           justifyContent: "center",
         }}
       >

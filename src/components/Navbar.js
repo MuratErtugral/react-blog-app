@@ -9,7 +9,7 @@ import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Tooltip from '@mui/material/Tooltip';  
 import MenuItem from '@mui/material/MenuItem';
-import Clarus from "../assets/cw.jpeg"
+import Icon from '../assets/blogicon.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { logOut } from '../helpers/firebase';
@@ -53,7 +53,7 @@ const Navbar = () => {
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
           >
             <Link to={"/"}>
-              <img src= {Clarus} alt="logo" width= "50px" height="50px"/>
+              <img src= {Icon} alt="logo" width= "50px" height="50px" style={{borderRadius: "50px"}} />
             </Link>
           </Typography>
           
@@ -64,16 +64,14 @@ const Navbar = () => {
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
             <Link to={"/"}>
-              <img src= {Clarus} alt="logo" width= "25px" height="25px"/>
+              <img src= {Icon} alt="logo" width= "25px" height="25px" style={{borderRadius: "25px"}}/>
             </Link>
           </Typography>
           
           <Box  sx={{ flexGrow: 11, display: { md: 'flex'} ,  justifyContent:"center"  }}>
-            <h2>Murat Blog</h2>
+            <h2>Stravska Blog</h2>
           </Box>
-          <Box  sx={{ flexGrow:1, display: { md: 'flex'} ,  justifyContent:"end"}}>
-            <h2>{currentUser?.displayName}</h2>
-          </Box>
+          
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
